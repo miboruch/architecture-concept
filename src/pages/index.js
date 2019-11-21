@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
-
+import { graphql, Link } from 'gatsby';
+import MainSlider from '../components/MainSlider/MainSlider';
 import Layout from '../components/Layout';
 import Image from '../components/image';
 import SEO from '../components/SEO';
 
-const StyledHeading = styled.h1`
-  color: black;
+const IndexPage = ({data}) => {
+  return (
+    <Layout>
+      <SEO title='Home' />
+      <MainSlider images={data}/>
+    </Layout>
+  );
+};
+
+export const sliderImage = graphql`
+    fragment sliderImage on File {
+        childImageSharp {
+            fluid(maxWidth: 2000, quality: 100){
+                ...GatsbyImageSharpFluid_noBase64
+            }
+        }
+    }
 `;
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title='Home' />
-    <StyledHeading>hello</StyledHeading>
-  </Layout>
-);
+export const query = graphql`
+    query {
+        image1: file(name: { regex: "/slider1/" }) {
+            ...sliderImage
+        }
+        image2: file(name: { regex: "/slider2/" }) {
+            ...sliderImage
+        }
+        image3: file(name: { regex: "/slider3/" }) {
+            ...sliderImage
+        }
+        image4: file(name: { regex: "/slider4/" }) {
+            ...sliderImage
+        }
+    }
+`;
 
 export default IndexPage;
