@@ -20,14 +20,21 @@ const StylesParagraph = styled.p`
   font-size: 40px;
 `;
 
-const StyledLine = styled.div`
-  width: 100%;
+const StyledLine = styled(animated.div)`
+  width: 0;
   height: 1px;
   background: #fff;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+`;
+
+const StyledHeading = styled(animated.h1)`
+  color: #fff;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
 `;
 
 const Paragraph = styled(animated.p)`
@@ -46,9 +53,9 @@ const StyledCircle = styled.div`
   background: none;
   border: 1px solid #fff;
 
-  &:hover ${StyledBackground} {
+  &:hover {
     transform: scale(1.5);
-    transition: transform 1s ease;
+    transition: all 1s ease;
     cursor: pointer;
   }
 `;
@@ -79,10 +86,22 @@ const SliderContent = ({ image, index }) => {
     delay: 500
   });
 
+  const heading = useSpring({
+    config: { duration: 2000, easing: easeExpOut },
+    to: {
+      opacity: isCurrentSlide ? 1 : 0,
+      x: isCurrentSlide ? 0 : 20,
+      height: isCurrentSlide ? 80 : 0,
+    },
+    from: { opacity: 0, x: 20, height: 0 },
+    delay: 500
+  });
+
   const line = useSpring({
     config: { duration: 2000, easing: easeExpOut },
     to: {
-      x: isCurrentSlide ? '200px' : '0'
+      // transform: isCurrentSlide ? 'translateX(0)' : 'translateX(-100%)'
+      width: isCurrentSlide ? '100px' : '0px'
     },
     delay: 500
   });
@@ -96,6 +115,8 @@ const SliderContent = ({ image, index }) => {
       >
         {props => <StylesParagraph style={props}>hello</StylesParagraph>}
       </Container>
+      <StyledHeading style={heading}>welcome</StyledHeading>
+      <StyledLine style={line} />
       <StyledCircle>ENTER</StyledCircle>
     </StyledBackground>
   );
