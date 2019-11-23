@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import SliderContent from '../SliderContent/SliderContent';
 import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
+import Paragraph from '../Paragraph/Paragraph';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -23,24 +24,17 @@ const StyledSlideInfo = styled.div`
   align-items: center;
   flex-direction: row;
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 1rem;
+  right: 1rem;
 `;
 
-const StyledSlideParagraph = styled.p`
-  color: #fff;
-  transition: all 1s ease;
-`;
-
-const StyledSlidePages = styled(StyledSlideParagraph)`
-  color: rgba(0, 0, 0, 0.4);
-`;
-
-const StyledLine = styled.div`
-  width: 10px;
-  height: 1px;
-  background: #fff;
-  margin: 0 1rem;
+const StrokedParagraph = styled.p`
+  font-size: 90px;
+  margin: 0;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
 `;
 
 const useScrollWheel = () => {
@@ -60,8 +54,15 @@ const useScrollWheel = () => {
 };
 
 const MainSlider = ({ images }) => {
-  const scroll = useScrollWheel(); /* change scroll unit (/100?)*/
+  const scroll = useScrollWheel();
   const { currentSlide, setSlide } = useContext(CurrentSlideContext);
+
+  /* convert object to array */
+  const keys = Object.keys(images);
+  const imagesArray = [];
+  keys.map(item => {
+    imagesArray.push(images[item]);
+  });
 
   useEffect(() => {
     scroll > 0 ? sliderRef.current.slickPrev() : sliderRef.current.slickNext();
@@ -90,15 +91,13 @@ const MainSlider = ({ images }) => {
   return (
     <StyledWrapper>
       <StyledSlider {...settings} ref={sliderRef}>
-        <SliderContent image={images.image1} index={0} />
-        <SliderContent image={images.image2} index={1} />
-        <SliderContent image={images.image3} index={2} />
-        <SliderContent image={images.image4} index={3} />
+        {imagesArray.map((item, index) => (
+          <SliderContent image={item} index={index} key={index} />
+        ))}
       </StyledSlider>
       <StyledSlideInfo>
-        <StyledSlideParagraph>{currentSlide + 1}</StyledSlideParagraph>
-        <StyledLine />
-        <StyledSlidePages>4</StyledSlidePages>
+        <StrokedParagraph>{currentSlide + 1}</StrokedParagraph>
+        <StrokedParagraph>/4</StrokedParagraph>
       </StyledSlideInfo>
     </StyledWrapper>
   );

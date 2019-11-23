@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import BackgroundImage from 'gatsby-background-image';
 import { Keyframes } from 'react-spring/renderprops-universal';
 import { animated, useSpring } from 'react-spring';
 import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
+import Paragraph from '../Paragraph/Paragraph';
+import { content } from '../../utils/content';
 
 const StyledBackground = styled(BackgroundImage)`
   width: 100%;
@@ -13,11 +15,11 @@ const StyledBackground = styled(BackgroundImage)`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 `;
 
-const StylesParagraph = styled.p`
-  color: #fff;
-  font-size: 40px;
+const ContentParagraph = styled(Paragraph)`
+  color: ${({ index }) => (index === 1 ? '#000' : '#fff')};
 `;
 
 const StyledLine = styled(animated.div)`
@@ -25,53 +27,81 @@ const StyledLine = styled(animated.div)`
   height: 1px;
   background: #fff;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 0;
   transform: translateY(-50%);
 `;
 
-const StyledHeading = styled(animated.h1)`
-  color: #fff;
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+const StrokedParagraph = styled(animated.p)`
+  margin: 0;
+  font-size: 90px;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+
+  ${({ index }) =>
+    `-webkit-text-stroke-color: ${index === 1 ? '#000' : '#fff'}`}
 `;
 
-const Paragraph = styled(animated.p)`
-  color: #ccc;
-  font-size: 40px;
+const bounce = keyframes`
+  0%{
+    top: 0;
+  }
+  50%{
+    top: .5rem;
+    left: .3rem;
+  }
+  100%{
+    top: 0;
+    left: 0.1rem;
+  }
 `;
 
 const StyledCircle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: ${({ index }) => (index === 1 ? '#000' : '#fff')};
   width: 160px;
   height: 160px;
   border-radius: 50%;
   background: none;
-  border: 1px solid #fff;
+  border: 1px solid ${({ index }) => (index === 1 ? '#000' : '#fff')};
+  transition: transform 1s ease;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: transparent;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 160px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+  }
 
   &:hover {
-    transform: scale(1.5);
-    transition: all 1s ease;
     cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 1s ease;
+  }
+
+  &:hover::before {
+    animation: ${bounce} 1.7s infinite;
+  }
+
+  &:hover ${StyledBackground} {
+    transform: scale(1.1);
+  }
+
+  &:hover::after {
+    animation: ${bounce} 1.3s infinite;
   }
 `;
-
-const Container = Keyframes.Spring({
-  in: async next => {
-    await next({
-      opacity: 1
-    });
-  },
-  out: async next => {
-    await next({
-      opacity: 0
-    });
-  }
-});
 
 const SliderContent = ({ image, index }) => {
   const { currentSlide } = useContext(CurrentSlideContext);
@@ -83,41 +113,38 @@ const SliderContent = ({ image, index }) => {
       opacity: isCurrentSlide ? 1 : 0,
       transform: isCurrentSlide ? `translateX(0)` : `translateX(-50%)`
     },
-    delay: 500
-  });
-
-  const heading = useSpring({
-    config: { duration: 2000, easing: easeExpOut },
-    to: {
-      opacity: isCurrentSlide ? 1 : 0,
-      x: isCurrentSlide ? 0 : 20,
-      height: isCurrentSlide ? 80 : 0,
-    },
-    from: { opacity: 0, x: 20, height: 0 },
+    reverse: !isCurrentSlide,
     delay: 500
   });
 
   const line = useSpring({
     config: { duration: 2000, easing: easeExpOut },
     to: {
-      // transform: isCurrentSlide ? 'translateX(0)' : 'translateX(-100%)'
-      width: isCurrentSlide ? '100px' : '0px'
+      width: isCurrentSlide ? '300px' : '0px'
+    },
+    reverse: !isCurrentSlide,
+    delay: 500
+  });
+
+  const mainText = useSpring({
+    config: { duration: 2000, easing: easeExpOut },
+    to: {
+      transform: isCurrentSlide ? 'translateX(0)' : 'translateX(100px)',
+      opacity: isCurrentSlide ? 1 : 0
     },
     delay: 500
   });
 
   return (
     <StyledBackground fluid={image.childImageSharp.fluid}>
-      <Paragraph style={props}>friend</Paragraph>
-      <Container
-        config={{ duration: 1000 }}
-        state={currentSlide === index ? 'in' : 'out'}
-      >
-        {props => <StylesParagraph style={props}>hello</StylesParagraph>}
-      </Container>
-      <StyledHeading style={heading}>welcome</StyledHeading>
+      <ContentParagraph style={props} index={index}>
+        {content[index].subtitle}
+      </ContentParagraph>
+      <StrokedParagraph style={mainText} index={index}>
+        {content[index].title}
+      </StrokedParagraph>
       <StyledLine style={line} />
-      <StyledCircle>ENTER</StyledCircle>
+      <StyledCircle index={index}>ENTER</StyledCircle>
     </StyledBackground>
   );
 };

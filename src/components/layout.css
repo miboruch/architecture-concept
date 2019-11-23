@@ -11,6 +11,6 @@
 }
 
 .slick-slide.slick-center {
-  transform: scale(1.1);
+  transform: scale(1.125);
   transition: transform .8s 1.4s cubic-bezier(.84, 0, .08, .99);
 }

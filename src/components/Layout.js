@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { theme } from '../styles/theme';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import GlobalStyle from '../styles/GlobalStyle';
 import './layout.css';
 
@@ -23,8 +24,8 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Header />
         {children}
+        <Footer/>
       </ThemeProvider>
     </>
   );
