@@ -8,6 +8,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import GlobalStyle from '../styles/GlobalStyle';
 import './layout.css';
+import TransitionProvider from '../providers/TransitionProvider';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -22,10 +23,11 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <TransitionProvider/>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         {children}
-        <Footer/>
+        <Footer />
       </ThemeProvider>
     </>
   );

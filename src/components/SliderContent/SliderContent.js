@@ -7,6 +7,9 @@ import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
 import Paragraph from '../Paragraph/Paragraph';
 import { content } from '../../utils/content';
+import TransitionLink from 'gatsby-plugin-transition-link';
+import asd from '../../pages/page-2';
+import PageTransitionProvider from '../../providers/TransitionProvider';
 
 const StyledBackground = styled(BackgroundImage)`
   width: 100%;
@@ -44,20 +47,6 @@ const StrokedParagraph = styled(animated.p)`
     `-webkit-text-stroke-color: ${index === 1 ? '#000' : '#fff'}`}
 `;
 
-const bounce = keyframes`
-  0%{
-    top: 0;
-  }
-  50%{
-    top: .5rem;
-    left: .3rem;
-  }
-  100%{
-    top: 0;
-    left: 0.1rem;
-  }
-`;
-
 const StyledCircle = styled.div`
   display: flex;
   justify-content: center;
@@ -90,16 +79,8 @@ const StyledCircle = styled.div`
     transition: transform 1s ease;
   }
 
-  &:hover::before {
-    animation: ${bounce} 1.7s infinite;
-  }
-
   &:hover ${StyledBackground} {
-    transform: scale(1.1);
-  }
-
-  &:hover::after {
-    animation: ${bounce} 1.3s infinite;
+    transform: scale(1.03);
   }
 `;
 
@@ -145,6 +126,9 @@ const SliderContent = ({ image, index }) => {
       </StrokedParagraph>
       <StyledLine style={line} />
       <StyledCircle index={index}>ENTER</StyledCircle>
+      <TransitionLink to={'/page-2'}>
+        click me
+      </TransitionLink>
     </StyledBackground>
   );
 };
