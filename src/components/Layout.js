@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <TransitionProvider/>
+      {/*<TransitionProvider/>*/}
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         {children}

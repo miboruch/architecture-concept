@@ -1,134 +1,85 @@
 import React from 'react';
 import styled from 'styled-components';
-import { animated, useSpring } from 'react-spring';
-import { TransitionState } from 'gatsby-plugin-transition-link';
-import { Keyframes, Spring } from 'react-spring/renderprops-universal';
+import PropTypes from 'prop-types';
+import TransitionLink from 'gatsby-plugin-transition-link';
+import { TimelineMax } from 'gsap';
 import { easeExpOut } from 'd3-ease';
-import Paragraph from '../components/Paragraph/Paragraph';
 
-const StyledDiv = styled(animated.div)`
-  width: 100%;
-  height: 100vh;
-  background: #000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translateX(-100%);
-  z-index: 10000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledParagraph = styled(Paragraph)`
+const StyledLink = styled(TransitionLink)`
+  text-decoration: none;
   color: #fff;
 `;
 
-const TransitionProvider = () => {
+const createTransitionBox = () => {
+  const body = document.body;
+  const element = document.createElement('div');
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
 
-  const enterPage = useSpring({
-    config: {duration: 2000, easing: easeExpOut},
-    from: {transform: 'translateX(0%)', opacity: 1},
-    to: async (next, delay) => {
-      await next({ transform: `translateX(-100%)`, opacity: 0 });
-      await delay(1000);
-      // await next({ transform: `translateX(-100%)` });
-    }
-  });
-  const exitPage = useSpring({
-    config: {duration: 2000, easing: easeExpOut},
-    from: {transform: 'translateX(-100%)', opacity: 0},
-    to: async next => {
-      await next({ transform: `translateX(0%)`, opacity: 1 });
-    }
-  });
-  const ToggleTransition = Keyframes.Spring({
-    enter: async next => {
-      await next({
-        transform: 'translateX(0%)',
-        from: { transform: 'translateX(-100%)' }
+  const style = element.style;
+  style.zIndex = 1000;
+  style.position = 'fixed';
+  style.bottom = 0;
+  style.backgroundColor = '#eee';
+  style.width = `${vw}px`;
+  style.height = `${vh}px`;
+
+  body.appendChild(element);
+  return { element, body, vw };
+};
+
+const TransitionProvider = ({ children, to }) => {
+  const exitAnimation = () => {
+    const { element, body, vw } = createTransitionBox();
+    const timeline = new TimelineMax();
+
+    timeline
+      .fromTo(element, 0.5, { x: -vw, ease: easeExpOut }, { x: '0' })
+      .to(element, 0.6, {
+        x: 0,
+        onComplete: () => {
+          body.removeChild(element);
+        }
       });
-    },
-    exit: async next => {
-      await next({
-        transform: 'translateX(-100%)',
-        from: { transform: 'translateX(0%)' }
-      });
-    }
-  });
+  };
+
+  const enterAnimation = () => {
+    const { element, body, vw } = createTransitionBox();
+    const timeline = new TimelineMax();
+
+    timeline.to(element, 0.8, {
+      x: vw,
+      delay: 0.5,
+      ease: easeExpOut,
+      onComplete: () => {
+        body.removeChild(element);
+      }
+    });
+  };
+
   return (
-    <TransitionState>
-      {({ transitionStatus }) => {
-        const mount = ['exiting', 'exited'].includes(transitionStatus);
-        console.log(transitionStatus);
-        console.log(`mount: ${mount}`);
-        return (
-          <StyledDiv style={mount ? exitPage : enterPage}>
-            <StyledParagraph>michalboruch</StyledParagraph>
-          </StyledDiv>
-        );
+    <StyledLink
+      to={to}
+      exit={{
+        trigger: ({ exit, node }) => exitAnimation(exit, node),
+        length: 0.8
       }}
-    </TransitionState>
+      entry={{
+        delay: 0.5,
+        trigger: ({ entry, node }) => enterAnimation(entry, node)
+      }}
+    >
+      {children}
+    </StyledLink>
   );
 };
 
+TransitionProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  to: PropTypes.string.isRequired
+};
+
 export default TransitionProvider;
-
-/*
- <Spring from={{transform: 'translateX(-100%)'}} to={{transform: `translateX(${mount ? '0': '100%'})`}}>
-          {props => <StyledDiv style={props}/>}
-        </Spring>
- */
-
-/*
-<ToggleTransition state={mount ? 'enter' : 'exit'} config={{duration: 1000}}>
-            {props => (
-              <StyledDiv style={props}/>
-            )}
-          </ToggleTransition>
- */
-
-/*
-CURRENT VERSION
-
-<Spring
-            from={{ transform: 'translateX(-100%)' }}
-            to={{ transform: `translateX(${mount ? '0' : '-100%'})` }}
-            config={{duration: 1000, easing: easeExpOut}}
-          >
-            {props => (
-              <StyledDiv style={props}>
-                <StyledParagraph>michalboruch</StyledParagraph>
-              </StyledDiv>
-            )}
-          </Spring>
-
- */
-
-/*
-
-<ToggleTransition state={mount ? enter : exit} config={{duration: 1000}}>
-            {props => (
-              <StyledDiv style={props}>
-                <StyledParagraph>michalboruch</StyledParagraph>
-              </StyledDiv>
-            )}
-          </ToggleTransition>
-
- */
-
-
-/*
-
-<ToggleTransition
-            config={{ duration: 1000, easing: easeExpOut }}
-            state={mount ? 'exit' : 'enter'}
-          >
-            {props => (
-              <StyledDiv style={props}>
-                <StyledParagraph>michalboruch</StyledParagraph>
-              </StyledDiv>
-            )}
-          </ToggleTransition>
-
- */

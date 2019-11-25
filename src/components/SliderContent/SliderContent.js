@@ -8,6 +8,7 @@ import { easeExpOut } from 'd3-ease';
 import Paragraph from '../Paragraph/Paragraph';
 import { content } from '../../utils/content';
 import TransitionLink from 'gatsby-plugin-transition-link';
+import TransitionProvider from '../../providers/TransitionProvider';
 import asd from '../../pages/page-2';
 import PageTransitionProvider from '../../providers/TransitionProvider';
 
@@ -126,9 +127,9 @@ const SliderContent = ({ image, index }) => {
       </StrokedParagraph>
       <StyledLine style={line} />
       <StyledCircle index={index}>ENTER</StyledCircle>
-      <TransitionLink to={'/page-2'}>
+      <TransitionProvider to={'/page-2'}>
         click me
-      </TransitionLink>
+      </TransitionProvider>
     </StyledBackground>
   );
 };
