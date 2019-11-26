@@ -11,7 +11,7 @@ export const theme = {
     }
   },
   color: {
-    background: '#ccc'
+    background: '#1c1c1c'
   },
   mq: {
     mobileL: '@media all and (min-width: 370px)',

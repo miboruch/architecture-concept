@@ -77,8 +77,8 @@ const MainSlider = ({ images }) => {
   const settings = {
     dots: false,
     infinite: true,
-    autoplay: false,
-    autoplaySpeed: 2400,
+    autoplay: true,
+    autoplaySpeed: 8000,
     speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
