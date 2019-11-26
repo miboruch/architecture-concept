@@ -12,6 +12,30 @@ const Paragraph = styled(animated.p)`
     css`
       color: rgba(255, 255, 255, 0.5);
     `}
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: ${({ theme }) => theme.font.size.s};
+    `}
+  
+  ${({ medium }) =>
+    medium &&
+    css`
+      font-size: ${({ theme }) => theme.font.size.m};
+    `}
+  
+  ${({ large }) =>
+    large &&
+    css`
+      font-size: ${({ theme }) => theme.font.size.l};
+    `}
+  
+  ${({ xlarge }) =>
+    xlarge &&
+    css`
+      font-size: ${({ theme }) => theme.font.size.xl};
+    `}
 `;
 
 export default Paragraph;

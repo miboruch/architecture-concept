@@ -12,5 +12,11 @@ export const theme = {
   },
   color: {
     background: '#ccc'
+  },
+  mq: {
+    mobileL: '@media all and (min-width: 370px)',
+    tablet: '@media all and (min-width: 710px)',
+    standard: '@media all and (min-width: 1024px)',
+    desktop: '@media all and (min-width: 1440px)',
   }
 };

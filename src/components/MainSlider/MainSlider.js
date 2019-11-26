@@ -29,12 +29,16 @@ const StyledSlideInfo = styled.div`
 `;
 
 const StrokedParagraph = styled.p`
-  font-size: 90px;
+  font-size: 70px;
   margin: 0;
   color: transparent;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
+
+  ${({ theme }) => theme.mq.mobileL} {
+    font-size: 90px;
+  }
 `;
 
 const useScrollWheel = () => {

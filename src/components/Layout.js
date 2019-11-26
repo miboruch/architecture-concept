@@ -23,9 +23,9 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/*<TransitionProvider/>*/}
       <GlobalStyle />
       <ThemeProvider theme={theme}>
+        <Header />
         {children}
         <Footer />
       </ThemeProvider>
