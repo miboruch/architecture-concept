@@ -6,12 +6,32 @@ import Layout from '../components/Layout';
 import Image from '../components/image';
 import SEO from '../components/SEO';
 import CurrentSlideContextProvider from '../providers/CurrentSlideContext';
+import Loader from '../components/Loader/Loader';
+
+const useLoadingEffect = () => {
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const changeLoading = window.setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => {
+      window.clearTimeout(changeLoading);
+    };
+  }, []);
+
+  return isLoading;
+};
 
 const IndexPage = ({ data }) => {
+  const isLoading = useLoadingEffect();
+
   return (
     <Layout>
       <CurrentSlideContextProvider>
         <SEO title='Home' />
+        <Loader isLoading={isLoading} />
         <MainSlider images={data} />
       </CurrentSlideContextProvider>
     </Layout>
