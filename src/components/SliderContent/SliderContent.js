@@ -2,11 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import BackgroundImage from 'gatsby-background-image';
 import { Keyframes } from 'react-spring/renderprops-universal';
+import {Link} from 'gatsby';
 import { animated, useSpring } from 'react-spring';
 import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
 import Paragraph from '../Paragraph/Paragraph';
-import { content } from '../../utils/content';
+import { sliderContent } from '../../utils/content';
 import TransitionProvider from '../../providers/TransitionProvider';
 
 const StyledBackground = styled(BackgroundImage)`
@@ -116,13 +117,13 @@ const SliderContent = ({ image, index }) => {
   return (
     <StyledBackground fluid={image.childImageSharp.fluid}>
       <ContentParagraph style={props}>
-        {content[index].subtitle}
+        {sliderContent[index].subtitle}
       </ContentParagraph>
       <StrokedParagraph style={mainText}>
-        {content[index].title}
+        {sliderContent[index].title}
       </StrokedParagraph>
       <StyledLine style={line} />
-      <TransitionProvider to={'/page-2'}>
+      <TransitionProvider to={`/page-2`}>
         <StyledCircle>ENTER</StyledCircle>
       </TransitionProvider>
     </StyledBackground>

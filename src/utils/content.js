@@ -1,4 +1,4 @@
-export const content = [
+export const sliderContent = [
   {
     title: 'Poché',
     subtitle: 'genius loci'

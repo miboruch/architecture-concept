@@ -31,6 +31,15 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
       }
+    },
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        typeName: 'ARCHITECTURE',
+        fieldName: 'architecture',
+        url:
+          'https://api-euwest.graphcms.com/v1/ck3ip39l82cf701esf3x6bolz/master'
+      }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
