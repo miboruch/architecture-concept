@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
 import { Keyframes } from 'react-spring/renderprops-universal';
 import { graphql, Link, useStaticQuery } from 'gatsby';
@@ -116,18 +117,18 @@ const SliderContent = ({ image, index, content }) => {
 
   return (
     <StyledBackground fluid={image.childImageSharp.fluid}>
-      <ContentParagraph style={props}>
-        {content.subheading}
-      </ContentParagraph>
-      <StrokedParagraph style={mainText}>
-        {content.heading}
-      </StrokedParagraph>
+      <ContentParagraph style={props}>{content.subheading}</ContentParagraph>
+      <StrokedParagraph style={mainText}>{content.heading}</StrokedParagraph>
       <StyledLine style={line} />
-      <TransitionProvider to={`/page-2`} index={index}>
+      <TransitionProvider to={`/modular-design`} index={index}>
         <StyledCircle>ENTER</StyledCircle>
       </TransitionProvider>
     </StyledBackground>
   );
+};
+
+SliderContent.propTypes = {
+  index: PropTypes.number.isRequired
 };
 
 export default SliderContent;

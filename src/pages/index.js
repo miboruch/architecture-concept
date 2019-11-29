@@ -31,13 +31,16 @@ const IndexPage = ({ data }) => {
   const {
     content: { contents }
   } = data;
-  console.log(contents);
+
   return (
     <Layout>
       <CurrentSlideContextProvider>
         <SEO title='Home' />
         <Loader isLoading={isLoading} />
-        <MainSlider images={[image1, image2, image3, image4]} content={contents}/>
+        <MainSlider
+          images={[image1, image2, image3, image4]}
+          content={contents}
+        />
       </CurrentSlideContextProvider>
     </Layout>
   );
@@ -54,27 +57,26 @@ export const sliderImage = graphql`
 `;
 
 export const query = graphql`
-  query {
-    image1: file(name: { regex: "/slider1/" }) {
-      ...sliderImage
+    query {
+        image1: file(name: { regex: "/slider1/" }) {
+            ...sliderImage
+        }
+        image2: file(name: { regex: "/slider2/" }) {
+            ...sliderImage
+        }
+        image3: file(name: { regex: "/slider3/" }) {
+            ...sliderImage
+        }
+        image4: file(name: { regex: "/slider4/" }) {
+            ...sliderImage
+        }
+        content: architecture {
+            contents {
+                heading
+                subheading
+            }
+        }
     }
-    image2: file(name: { regex: "/slider2/" }) {
-      ...sliderImage
-    }
-    image3: file(name: { regex: "/slider3/" }) {
-      ...sliderImage
-    }
-    image4: file(name: { regex: "/slider4/" }) {
-      ...sliderImage
-    }
-    content: architecture {
-      contents {
-        heading
-        subheading
-        index
-      }
-    }
-  }
 `;
 
 export default IndexPage;

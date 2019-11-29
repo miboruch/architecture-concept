@@ -80,7 +80,8 @@ TransitionProvider.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  to: PropTypes.string.isRequired
+  to: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default TransitionProvider;
