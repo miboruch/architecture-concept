@@ -27,12 +27,17 @@ const useLoadingEffect = () => {
 const IndexPage = ({ data }) => {
   const isLoading = useLoadingEffect();
 
+  const { image1, image2, image3, image4 } = data;
+  const {
+    content: { contents }
+  } = data;
+  console.log(contents);
   return (
     <Layout>
       <CurrentSlideContextProvider>
         <SEO title='Home' />
         <Loader isLoading={isLoading} />
-        <MainSlider images={data} />
+        <MainSlider images={[image1, image2, image3, image4]} content={contents}/>
       </CurrentSlideContextProvider>
     </Layout>
   );
@@ -61,6 +66,13 @@ export const query = graphql`
     }
     image4: file(name: { regex: "/slider4/" }) {
       ...sliderImage
+    }
+    content: architecture {
+      contents {
+        heading
+        subheading
+        index
+      }
     }
   }
 `;

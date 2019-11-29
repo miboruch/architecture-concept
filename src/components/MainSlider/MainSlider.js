@@ -57,16 +57,9 @@ const useScrollWheel = () => {
   return scrollDelta;
 };
 
-const MainSlider = ({ images }) => {
+const MainSlider = ({ images, content }) => {
   const scroll = useScrollWheel();
   const { currentSlide, setSlide } = useContext(CurrentSlideContext);
-
-  /* convert object to array */
-  const keys = Object.keys(images);
-  const imagesArray = [];
-  keys.map(item => {
-    imagesArray.push(images[item]);
-  });
 
   useEffect(() => {
     scroll > 0 ? sliderRef.current.slickPrev() : sliderRef.current.slickNext();
@@ -95,8 +88,8 @@ const MainSlider = ({ images }) => {
   return (
     <StyledWrapper>
       <StyledSlider {...settings} ref={sliderRef}>
-        {imagesArray.map((item, index) => (
-          <SliderContent image={item} index={index} key={index} />
+        {images.map((item, index) => (
+          <SliderContent image={item} index={index} key={index} content={content[index]}/>
         ))}
       </StyledSlider>
       <StyledSlideInfo>

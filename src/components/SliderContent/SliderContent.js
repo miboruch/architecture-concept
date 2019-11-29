@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import BackgroundImage from 'gatsby-background-image';
 import { Keyframes } from 'react-spring/renderprops-universal';
-import {Link} from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import { animated, useSpring } from 'react-spring';
 import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
@@ -82,7 +82,7 @@ const StyledCircle = styled.div`
   }
 `;
 
-const SliderContent = ({ image, index }) => {
+const SliderContent = ({ image, index, content }) => {
   const { currentSlide } = useContext(CurrentSlideContext);
   const isCurrentSlide = currentSlide === index;
 
@@ -117,13 +117,13 @@ const SliderContent = ({ image, index }) => {
   return (
     <StyledBackground fluid={image.childImageSharp.fluid}>
       <ContentParagraph style={props}>
-        {sliderContent[index].subtitle}
+        {content.subheading}
       </ContentParagraph>
       <StrokedParagraph style={mainText}>
-        {sliderContent[index].title}
+        {content.heading}
       </StrokedParagraph>
       <StyledLine style={line} />
-      <TransitionProvider to={`/page-2`}>
+      <TransitionProvider to={`/page-2`} index={index}>
         <StyledCircle>ENTER</StyledCircle>
       </TransitionProvider>
     </StyledBackground>

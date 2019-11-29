@@ -49,10 +49,10 @@ const Loader = ({ isLoading }) => {
   return (
     <>
       <StyledUpperWrapper isLoading={isLoading}>
-        <StyledParagraph small={true} style={textEffect}>michalboruch</StyledParagraph>
+        <StyledParagraph small='true' style={textEffect}>michalboruch</StyledParagraph>
       </StyledUpperWrapper>
       <StyledLowerWrapper isLoading={isLoading}>
-        <StyledParagraph small={true}>architecture & design</StyledParagraph>
+        <StyledParagraph small='true'>architecture & design</StyledParagraph>
       </StyledLowerWrapper>
     </>
   );

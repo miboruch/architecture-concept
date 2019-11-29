@@ -28,7 +28,7 @@ const createTransitionBox = () => {
   return { element, body, vw };
 };
 
-const TransitionProvider = ({ children, to }) => {
+const TransitionProvider = ({ children, to, index }) => {
   const exitAnimation = () => {
     const { element, body, vw } = createTransitionBox();
     const timeline = new TimelineMax();
@@ -66,7 +66,8 @@ const TransitionProvider = ({ children, to }) => {
       }}
       entry={{
         delay: 0.5,
-        trigger: ({ entry, node }) => enterAnimation(entry, node)
+        trigger: ({ entry, node }) => enterAnimation(entry, node),
+        state: {current: index}
       }}
     >
       {children}
