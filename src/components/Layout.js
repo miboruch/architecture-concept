@@ -10,31 +10,22 @@ import GlobalStyle from '../styles/GlobalStyle';
 import './layout.css';
 import TransitionProvider from '../providers/TransitionProvider';
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
+const Layout = ({ children, color }) => {
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Header />
+        <Header color={color} />
         {children}
-        <Footer />
+        <Footer color={color} />
       </ThemeProvider>
     </>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  color: PropTypes.string
 };
 
 export default Layout;

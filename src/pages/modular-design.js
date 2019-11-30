@@ -4,15 +4,15 @@ import ProductTemplate from '../templates/ProductTemplate';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
-const SecondPage = ({ data }) => {
+const ModularPage = ({ data }) => {
   const {
     content: { contents }
   } = data;
   return (
-    <Layout>
-      <SEO title='Page two' />
+    <>
+      <SEO title='Modular design' />
       <ProductTemplate content={contents[0]} image={data} />
-    </Layout>
+    </>
   );
 };
 
@@ -36,4 +36,4 @@ export const query = graphql`
   }
 `;
 
-export default SecondPage;
+export default ModularPage;

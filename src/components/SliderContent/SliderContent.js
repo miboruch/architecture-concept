@@ -120,7 +120,7 @@ const SliderContent = ({ image, index, content }) => {
       <ContentParagraph style={props}>{content.subheading}</ContentParagraph>
       <StrokedParagraph style={mainText}>{content.heading}</StrokedParagraph>
       <StyledLine style={line} />
-      <TransitionProvider to={`/modular-design`} index={index}>
+      <TransitionProvider to={`/${content.subheading}-design`} index={index}>
         <StyledCircle>ENTER</StyledCircle>
       </TransitionProvider>
     </StyledBackground>

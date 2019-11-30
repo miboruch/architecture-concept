@@ -11,7 +11,9 @@ export const theme = {
     }
   },
   color: {
-    background: '#1c1c1c'
+    background: '#1c1c1c',
+    secondBackground: '#f5f5f3',
+    secondFont: '#7b7b7b'
   },
   mq: {
     mobileL: '@media all and (min-width: 370px)',

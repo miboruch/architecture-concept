@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Paragraph from '../Paragraph/Paragraph';
 
 const StyledFooter = styled.footer`
@@ -8,15 +9,24 @@ const StyledFooter = styled.footer`
   position: absolute;
   bottom: 3rem;
   left: 1rem;
-  color: #fff;
 `;
 
-const Footer = () => {
+const StyledParagraph = styled(Paragraph)`
+  color: ${({ color }) => (color ? '#000' : '#fff')};
+`;
+
+const Footer = ({ color }) => {
   return (
     <StyledFooter>
-      <Paragraph small='true'>michalboruch</Paragraph>
+      <StyledParagraph small='true' color={color}>
+        michalboruch
+      </StyledParagraph>
     </StyledFooter>
   );
+};
+
+Footer.propTypes = {
+  color: PropTypes.string
 };
 
 export default Footer;

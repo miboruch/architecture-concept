@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -24,14 +24,14 @@ const StyledRowBox = styled.div`
 
 const StyledLink = styled.a`
   text-decoration: none;
-  color: #fff;
+  color: ${({ color }) => (color ? '#000' : '#fff')};
   letter-spacing: 2px;
   margin: 0;
   padding: 2rem;
   font-size: ${({ theme }) => theme.font.size.s};
 `;
 
-const Header = () => {
+const Header = ({ color }) => {
   return (
     <StyledHeader>
       <StyledRowBox>
@@ -39,6 +39,7 @@ const Header = () => {
           href='https://github.com/miboruch'
           target='_blank'
           rel='noopener noreferrer'
+          color={color}
         >
           .Github
         </StyledLink>
@@ -46,12 +47,17 @@ const Header = () => {
           href='https://www.linkedin.com/in/michal-boruch/'
           target='_blank'
           rel='noopener noreferrer'
+          color={color}
         >
           .Linkedin
         </StyledLink>
       </StyledRowBox>
     </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  color: PropTypes.string
 };
 
 export default Header;
