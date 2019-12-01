@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import SliderContent from '../SliderContent/SliderContent';
 import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
-import Paragraph from '../Paragraph/Paragraph';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -89,7 +88,12 @@ const MainSlider = ({ images, content }) => {
     <StyledWrapper>
       <StyledSlider {...settings} ref={sliderRef}>
         {images.map((item, index) => (
-          <SliderContent image={item} index={index} key={index} content={content[index]}/>
+          <SliderContent
+            image={item}
+            index={index}
+            key={index}
+            content={content[index]}
+          />
         ))}
       </StyledSlider>
       <StyledSlideInfo>

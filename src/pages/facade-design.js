@@ -1,0 +1,37 @@
+import React from 'react';
+import ProductTemplate from '../templates/ProductTemplate';
+import SEO from '../components/SEO';
+
+const ModularPage = ({ data }) => {
+  const {
+    content: { contents }
+  } = data;
+  return (
+    <>
+      <SEO title='Facade design' />
+      <ProductTemplate content={contents[0]} image={data} />
+    </>
+  );
+};
+
+export const query = graphql`
+    query {
+        image1: file(name: { regex: "/slider4/" }) {
+            ...sliderImage
+        }
+        content: architecture {
+            contents(where: { heading: "Scale" }) {
+                id
+                location
+                projectId
+                index
+                description
+                heading
+                size
+                subheading
+            }
+        }
+    }
+`;
+
+export default ModularPage;

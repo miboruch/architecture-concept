@@ -1,14 +1,11 @@
-import React, { useContext, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
-import { Keyframes } from 'react-spring/renderprops-universal';
-import { graphql, Link, useStaticQuery } from 'gatsby';
 import { animated, useSpring } from 'react-spring';
 import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
 import Paragraph from '../Paragraph/Paragraph';
-import { sliderContent } from '../../utils/content';
 import TransitionProvider from '../../providers/TransitionProvider';
 
 const StyledBackground = styled(BackgroundImage)`

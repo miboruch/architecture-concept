@@ -90,7 +90,6 @@ const StyledDescriptionBox = styled.div`
 `;
 
 const ProductTemplate = ({ image, content }) => {
-  console.log(content);
   return (
     <Layout color='dark'>
       <StyledWrapper>
