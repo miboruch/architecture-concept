@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductTemplate from '../templates/ProductTemplate';
+import ApartmentTemplate from '../templates/ApartmentTemplate';
 import SEO from '../components/SEO';
 
 const ModularPage = ({ data }) => {
@@ -9,7 +9,7 @@ const ModularPage = ({ data }) => {
   return (
     <>
       <SEO title='Metaphor design' />
-      <ProductTemplate content={contents[0]} image={data} />
+      <ApartmentTemplate content={contents[0]} image={data} />
     </>
   );
 };
