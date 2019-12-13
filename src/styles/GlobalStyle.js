@@ -25,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
   }
   
+  a{
+    text-decoration: none !important;
+  }
+  
   h1{
     margin: 0;
   }

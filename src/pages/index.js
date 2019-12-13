@@ -57,26 +57,26 @@ export const sliderImage = graphql`
 `;
 
 export const query = graphql`
-    query {
-        image1: file(name: { regex: "/slider1/" }) {
-            ...sliderImage
-        }
-        image2: file(name: { regex: "/slider2/" }) {
-            ...sliderImage
-        }
-        image3: file(name: { regex: "/slider3/" }) {
-            ...sliderImage
-        }
-        image4: file(name: { regex: "/slider4/" }) {
-            ...sliderImage
-        }
-        content: architecture {
-            contents {
-                heading
-                subheading
-            }
-        }
+  query {
+    image1: file(name: { regex: "/slider1/" }) {
+      ...sliderImage
     }
+    image2: file(name: { regex: "/slider2/" }) {
+      ...sliderImage
+    }
+    image3: file(name: { regex: "/slider3/" }) {
+      ...sliderImage
+    }
+    image4: file(name: { regex: "/slider4/" }) {
+      ...sliderImage
+    }
+    content: architecture {
+      contents {
+        heading
+        subheading
+      }
+    }
+  }
 `;
 
 export default IndexPage;

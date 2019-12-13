@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import Paragraph from '../components/Paragraph/Paragraph';
 import Layout from '../components/Layout';
-import TransitionProvider from '../providers/TransitionProvider';
 import { useSpring, animated } from 'react-spring';
 import { easeExpOut } from 'd3-ease';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const StyledWrapper = styled.div`
   width: 100%;
-  min-height: 100vh;
   background: ${({ theme }) => theme.color.secondBackground};
   padding-top: 5rem;
   padding-bottom: 7rem;
@@ -59,6 +58,7 @@ const StyledParagraph = styled(animated(Paragraph))`
   color: ${({ theme }) => theme.color.secondFont};
   padding: 2rem 0;
   letter-spacing: 3px;
+  text-decoration: none;
 `;
 
 const StyledParagraphNoPadding = styled(StyledParagraph)`
@@ -128,9 +128,9 @@ const ApartmentTemplate = ({ image, content }) => {
       <StyledWrapper>
         <StyledInnerWrapper>
           <StyledBackBox style={boxSlider}>
-            <TransitionProvider to='/'>
+            <AniLink fade to={'/'} duration={2}>
               <StyledParagraph small='true'>GO BACK</StyledParagraph>
-            </TransitionProvider>
+            </AniLink>
           </StyledBackBox>
           <StyledHeading style={fadeIn}>
             Inspiring solutions in each design
@@ -150,7 +150,10 @@ const ApartmentTemplate = ({ image, content }) => {
               {content.description}
             </StyledParagraph>
           </StyledDescriptionBox>
-          <StyledImage fluid={image.image1.childImageSharp.fluid} style={fadeIn} />
+          <StyledImage
+            fluid={image.image1.childImageSharp.fluid}
+            style={fadeIn}
+          />
         </StyledInnerWrapper>
       </StyledWrapper>
     </Layout>

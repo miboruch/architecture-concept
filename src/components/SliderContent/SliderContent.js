@@ -6,7 +6,7 @@ import { animated, useSpring } from 'react-spring';
 import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
 import Paragraph from '../Paragraph/Paragraph';
-import TransitionProvider from '../../providers/TransitionProvider';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const StyledBackground = styled(BackgroundImage)`
   width: 100%;
@@ -117,9 +117,9 @@ const SliderContent = ({ image, index, content }) => {
       <ContentParagraph style={props}>{content.subheading}</ContentParagraph>
       <StrokedParagraph style={mainText}>{content.heading}</StrokedParagraph>
       <StyledLine style={line} />
-      <TransitionProvider to={`/${content.subheading}-design`} index={index}>
+      <AniLink fade to={`/${content.subheading}-design`} duration={2}>
         <StyledCircle>ENTER</StyledCircle>
-      </TransitionProvider>
+      </AniLink>
     </StyledBackground>
   );
 };

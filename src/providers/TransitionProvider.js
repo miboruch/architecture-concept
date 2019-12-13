@@ -23,6 +23,7 @@ const createTransitionBox = () => {
   style.backgroundColor = '#eee';
   style.width = `${vw}px`;
   style.height = `${vh}px`;
+  style.transform = `translateX(${vw})px`;
 
   body.appendChild(element);
   return { element, body, vw };
@@ -34,9 +35,9 @@ const TransitionProvider = ({ children, to }) => {
     const timeline = new TimelineMax();
 
     timeline
-      .fromTo(element, 0.5, { x: -vw, ease: easeExpOut }, { x: '0' })
+      .fromTo(element, 0.5, { transform: `translateX(${-vw}px)`, ease: easeExpOut }, { transform: 'translateX(0)' })
       .to(element, 0.6, {
-        x: 0,
+        transform: `translateX(0)`,
         onComplete: () => {
           body.removeChild(element);
         }
@@ -48,7 +49,7 @@ const TransitionProvider = ({ children, to }) => {
     const timeline = new TimelineMax();
 
     timeline.to(element, 0.8, {
-      x: vw,
+      transform: `translateX(${vw}px)`,
       delay: 0.5,
       ease: easeExpOut,
       onComplete: () => {

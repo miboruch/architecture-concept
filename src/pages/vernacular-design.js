@@ -15,23 +15,23 @@ const ModularPage = ({ data }) => {
 };
 
 export const query = graphql`
-    query {
-        image1: file(name: { regex: "/slider2/" }) {
-            ...sliderImage
-        }
-        content: architecture {
-            contents(where: { heading: "Parti" }) {
-                id
-                location
-                projectId
-                index
-                description
-                heading
-                size
-                subheading
-            }
-        }
+  query {
+    image1: file(name: { regex: "/slider2/" }) {
+      ...sliderImage
     }
+    content: architecture {
+      contents(where: { heading: "Parti" }) {
+        id
+        location
+        projectId
+        index
+        description
+        heading
+        size
+        subheading
+      }
+    }
+  }
 `;
 
 export default ModularPage;
