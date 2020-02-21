@@ -1,6 +1,7 @@
 import React from 'react';
 import ApartmentTemplate from '../templates/ApartmentTemplate';
 import SEO from '../components/SEO';
+import {graphql} from 'gatsby';
 
 const ModularPage = ({ data }) => {
   const {

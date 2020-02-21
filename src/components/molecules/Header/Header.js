@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Hamburger from '../../atoms/Hamburger/Hamburger';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
+import { useScrollPosition } from '../../../utils/customHooks';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -16,15 +17,25 @@ const StyledHeader = styled.header`
   left: 0;
   z-index: 1000;
   padding: 0 2rem;
+  transition: all 1s 0.5s ease;
+
+  ${({ isOnTop }) =>
+    !isOnTop &&
+    css`
+      transition: all 1s 0.5s ease;
+      background-color: ${({ colorTheme }) =>
+        colorTheme === 'dark' ? '#2d2d2d' : '#fff'};
+    `}
 `;
 
 const StyledParagraph = styled(Paragraph)`
-  color: ${({colorTheme}) => colorTheme==='dark' ? '#fff' : '#000'}
+  color: ${({ colorTheme }) => (colorTheme === 'dark' ? '#fff' : '#000')};
 `;
 
 const Header = ({ colorTheme }) => {
+  const isOnTop = useScrollPosition();
   return (
-    <StyledHeader>
+    <StyledHeader colorTheme={colorTheme} isOnTop={isOnTop}>
       <Hamburger isOpen={false} colorTheme={colorTheme} />
       <StyledParagraph colorTheme={colorTheme}>michalboruch</StyledParagraph>
     </StyledHeader>

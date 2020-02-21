@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {animated} from 'react-spring';
+import { animated } from 'react-spring';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { useSpring } from 'react-spring';
 import { easeExpOut } from 'd3-ease';
@@ -49,7 +49,9 @@ const Loader = ({ isLoading }) => {
   return (
     <>
       <StyledUpperWrapper isLoading={isLoading}>
-        <StyledParagraph small='true' style={textEffect}>michalboruch</StyledParagraph>
+        <StyledParagraph small='true' style={textEffect}>
+          michalboruch
+        </StyledParagraph>
       </StyledUpperWrapper>
       <StyledLowerWrapper isLoading={isLoading}>
         <StyledParagraph small='true'>architecture & design</StyledParagraph>

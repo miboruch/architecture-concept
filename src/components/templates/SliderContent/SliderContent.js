@@ -6,7 +6,6 @@ import { animated, useSpring } from 'react-spring';
 import { CurrentSlideContext } from '../../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
-import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const StyledBackground = styled(BackgroundImage)`
   width: 100%;

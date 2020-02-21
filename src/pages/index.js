@@ -8,11 +8,11 @@ import CurrentSlideContextProvider from '../providers/CurrentSlideContext';
 import Loader from '../components/molecules/Loader/Loader';
 import { useLoadingEffect } from '../utils/customHooks';
 import MainPageContent from '../components/molecules/MainPageContent/MainPageContent';
+import PhotoSlider from '../components/molecules/PhotoSlider/PhotoSlider';
 
-const StyledBox = styled.div`
+const StyledWrapper = styled.div`
   width: 100%;
-  height: 50vh;
-  background-color: ${({ theme }) => theme.color.backgroundLight};
+  min-height: 100vh;
 `;
 
 const IndexPage = ({ data }) => {
@@ -28,11 +28,17 @@ const IndexPage = ({ data }) => {
       <CurrentSlideContextProvider>
         <SEO title='Home' />
         <Loader isLoading={isLoading} />
-        <MainSlider
-          images={[image1, image2, image3, image4]}
-          content={contents}
-        />
-        <MainPageContent />
+        <StyledWrapper>
+          <MainSlider
+            images={[image1, image2, image3, image4]}
+            content={contents}
+          />
+          <MainPageContent />
+          <PhotoSlider
+            images={[image1, image2, image3, image4]}
+            content={contents}
+          />
+        </StyledWrapper>
       </CurrentSlideContextProvider>
     </Layout>
   );
@@ -66,6 +72,7 @@ export const query = graphql`
       contents {
         heading
         subheading
+        url
       }
     }
   }

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import SliderContent from '../SliderContent/SliderContent';
 import { CurrentSlideContext } from '../../../providers/CurrentSlideContext';
+import Arrow from '../../atoms/Arrow/Arrow';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -46,6 +47,20 @@ const StyledLineDark = styled(StyledLine)`
   transform: translateY(100%);
 `;
 
+const ArrowWrapper = styled.div`
+  width: 200px;
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const StyledReversedArrowWrapper = styled.div`
+  transform: rotate(180deg);
+`;
+
 const MainSlider = ({ images, content }) => {
   const { currentSlide, setSlide } = useContext(CurrentSlideContext);
 
@@ -62,7 +77,7 @@ const MainSlider = ({ images, content }) => {
     verticalSwiping: false,
     cssEase: 'cubic-bezier(.84, 0, .08, .99)',
     fade: true,
-    initialSlide: 3,
+    initialSlide: 0,
     afterChange: current => {
       setSlide(current);
     }
@@ -84,6 +99,12 @@ const MainSlider = ({ images, content }) => {
         <StrokedParagraph>{currentSlide + 1}</StrokedParagraph>
         <StrokedParagraph>/4</StrokedParagraph>
       </StyledSlideInfo>
+      <ArrowWrapper>
+        <Arrow onClick={() => sliderRef.current.slickPrev()} />
+        <StyledReversedArrowWrapper>
+          <Arrow onClick={() => sliderRef.current.slickNext()} />
+        </StyledReversedArrowWrapper>
+      </ArrowWrapper>
       <StyledLine />
       <StyledLineDark />
     </StyledWrapper>

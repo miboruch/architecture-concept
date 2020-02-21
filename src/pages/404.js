@@ -79,7 +79,9 @@ const NotFoundPage = () => {
           <NumberHeading style={secondFadeIn}>404</NumberHeading>
           <StyledHeading style={firstFadeIn}>NOT FOUND</StyledHeading>
           <TransitionProvider to='/'>
-            <StyledParagraph small='true' style={thirdFadeIn}>go back to main page</StyledParagraph>
+            <StyledParagraph small='true' style={thirdFadeIn}>
+              go back to main page
+            </StyledParagraph>
           </TransitionProvider>
         </TextWrapper>
       </StyledWrapper>
