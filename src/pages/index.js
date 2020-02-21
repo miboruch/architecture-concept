@@ -3,26 +3,16 @@ import styled from 'styled-components';
 import { graphql, Link } from 'gatsby';
 import MainSlider from '../components/MainSlider/MainSlider';
 import Layout from '../components/Layout';
-import Image from '../components/image';
 import SEO from '../components/SEO';
 import CurrentSlideContextProvider from '../providers/CurrentSlideContext';
 import Loader from '../components/Loader/Loader';
+import { useLoadingEffect } from '../utils/customHooks';
 
-const useLoadingEffect = () => {
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const changeLoading = window.setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => {
-      window.clearTimeout(changeLoading);
-    };
-  }, []);
-
-  return isLoading;
-};
+const StyledBox = styled.div`
+  width: 100%;
+  height: 50vh;
+  background-color: ${({ theme }) => theme.color.backgroundLight};
+`;
 
 const IndexPage = ({ data }) => {
   const isLoading = useLoadingEffect();
@@ -33,7 +23,7 @@ const IndexPage = ({ data }) => {
   } = data;
 
   return (
-    <Layout>
+    <Layout colorTheme='dark'>
       <CurrentSlideContextProvider>
         <SEO title='Home' />
         <Loader isLoading={isLoading} />
@@ -41,6 +31,7 @@ const IndexPage = ({ data }) => {
           images={[image1, image2, image3, image4]}
           content={contents}
         />
+        <StyledBox />
       </CurrentSlideContextProvider>
     </Layout>
   );

@@ -12,13 +12,13 @@ const StyledFooter = styled.footer`
 `;
 
 const StyledParagraph = styled(Paragraph)`
-  color: ${({ color }) => (color ? '#000' : '#fff')};
+  color: ${({ colorTheme }) => (colorTheme === 'dark' ? '#fff' : '#000')};
 `;
 
-const Footer = ({ color }) => {
+const Footer = ({ colorTheme }) => {
   return (
     <StyledFooter>
-      <StyledParagraph small='true' color={color}>
+      <StyledParagraph small='true' colorTheme={colorTheme}>
         michalboruch
       </StyledParagraph>
     </StyledFooter>
@@ -26,7 +26,7 @@ const Footer = ({ color }) => {
 };
 
 Footer.propTypes = {
-  color: PropTypes.string
+  colorTheme: PropTypes.oneOf(['light', 'dark'])
 };
 
 export default Footer;

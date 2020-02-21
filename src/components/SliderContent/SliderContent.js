@@ -12,7 +12,7 @@ const StyledBackground = styled(BackgroundImage)`
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
@@ -42,42 +42,10 @@ const StrokedParagraph = styled(animated.p)`
   }
 `;
 
-const StyledCircle = styled.div`
+const ContentWrapper = styled.div`
+  margin-bottom: 80px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: none;
-  border: #fff;
-  margin-top: 2rem;
-  transition: transform 1s ease;
-  position: relative;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    background: transparent;
-    top: 0;
-    left: 0;
-    width: 160px;
-    height: 160px;
-    border: 1px solid #fff;
-    border-radius: 50%;
-  }
-
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: transform 1s ease;
-  }
-
-  &:hover ${StyledBackground} {
-    transform: scale(1.03);
-  }
+  flex-direction: column;
 `;
 
 const SliderContent = ({ image, index, content }) => {
@@ -114,12 +82,10 @@ const SliderContent = ({ image, index, content }) => {
 
   return (
     <StyledBackground fluid={image.childImageSharp.fluid}>
-      <ContentParagraph style={props}>{content.subheading}</ContentParagraph>
-      <StrokedParagraph style={mainText}>{content.heading}</StrokedParagraph>
-      <StyledLine style={line} />
-      <AniLink fade to={`/${content.subheading}-design`} duration={2}>
-        <StyledCircle>ENTER</StyledCircle>
-      </AniLink>
+      <ContentWrapper>
+        <ContentParagraph style={props}>{content.subheading}</ContentParagraph>
+        <StrokedParagraph style={mainText}>{content.heading}</StrokedParagraph>
+      </ContentWrapper>
     </StyledBackground>
   );
 };

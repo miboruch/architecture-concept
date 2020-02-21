@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import SliderContent from '../SliderContent/SliderContent';
@@ -8,7 +8,6 @@ const StyledWrapper = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
-  overflow: hidden;
 `;
 
 const StyledSlider = styled(Slider)`
@@ -23,46 +22,32 @@ const StyledSlideInfo = styled.div`
   align-items: center;
   flex-direction: row;
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 2rem;
+  left: 2rem;
 `;
 
 const StrokedParagraph = styled.p`
-  font-size: 70px;
+  font-size: 18px;
   margin: 0;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white;
-
-  ${({ theme }) => theme.mq.mobileL} {
-    font-size: 90px;
-  }
+  color: #fff;
 `;
 
-const useScrollWheel = () => {
-  const [scrollDelta, setScrollDelta] = useState(0);
+const StyledLine = styled.div`
+  width: 1px;
+  height: 70px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 75px;
+`;
 
-  useEffect(() => {
-    window.addEventListener('wheel', event => {
-      setScrollDelta(event.wheelDelta);
-    });
-    return () =>
-      window.removeEventListener('wheel', event => {
-        setScrollDelta(event.wheelDelta);
-      });
-  }, []);
-
-  return scrollDelta;
-};
+const StyledLineDark = styled(StyledLine)`
+  background-color: ${({ theme }) => theme.color.backgroundDark};
+  transform: translateY(100%);
+`;
 
 const MainSlider = ({ images, content }) => {
-  const scroll = useScrollWheel();
   const { currentSlide, setSlide } = useContext(CurrentSlideContext);
-
-  useEffect(() => {
-    scroll > 0 ? sliderRef.current.slickPrev() : sliderRef.current.slickNext();
-  }, [scroll]);
 
   const sliderRef = useRef(null);
 
@@ -70,15 +55,13 @@ const MainSlider = ({ images, content }) => {
     dots: false,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 8000,
+    autoplaySpeed: 6000,
     speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    vertical: true,
-    swipeToSlide: false,
     verticalSwiping: false,
     cssEase: 'cubic-bezier(.84, 0, .08, .99)',
-    centerMode: true,
+    fade: true,
     initialSlide: 3,
     afterChange: current => {
       setSlide(current);
@@ -101,6 +84,8 @@ const MainSlider = ({ images, content }) => {
         <StrokedParagraph>{currentSlide + 1}</StrokedParagraph>
         <StrokedParagraph>/4</StrokedParagraph>
       </StyledSlideInfo>
+      <StyledLine />
+      <StyledLineDark />
     </StyledWrapper>
   );
 };

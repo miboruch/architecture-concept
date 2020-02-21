@@ -1,23 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
-
 import { theme } from '../styles/theme';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import GlobalStyle from '../styles/GlobalStyle';
 import './layout.css';
-import TransitionProvider from '../providers/TransitionProvider';
 
-const Layout = ({ children, color }) => {
+const Layout = ({ children, colorTheme }) => {
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Header color={color} />
+        <Header colorTheme={colorTheme} />
         {children}
-        <Footer color={color} />
+        {/*<Footer colorTheme={colorTheme} />*/}
       </ThemeProvider>
     </>
   );
@@ -25,7 +22,7 @@ const Layout = ({ children, color }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  color: PropTypes.string
+  colorTheme: PropTypes.oneOf(['light', 'dark'])
 };
 
 export default Layout;
