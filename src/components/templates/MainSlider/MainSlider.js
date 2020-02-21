@@ -2,7 +2,7 @@ import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import SliderContent from '../SliderContent/SliderContent';
-import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
+import { CurrentSlideContext } from '../../../providers/CurrentSlideContext';
 
 const StyledWrapper = styled.div`
   width: 100%;

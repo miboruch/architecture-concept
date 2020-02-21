@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import Hamburger from '../atoms/Hamburger/Hamburger';
-import Paragraph from '../Paragraph/Paragraph';
+import Hamburger from '../../atoms/Hamburger/Hamburger';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -18,11 +18,15 @@ const StyledHeader = styled.header`
   padding: 0 2rem;
 `;
 
+const StyledParagraph = styled(Paragraph)`
+  color: ${({colorTheme}) => colorTheme==='dark' ? '#fff' : '#000'}
+`;
+
 const Header = ({ colorTheme }) => {
   return (
     <StyledHeader>
       <Hamburger isOpen={false} colorTheme={colorTheme} />
-      <Paragraph small='true'>michalboruch</Paragraph>
+      <StyledParagraph colorTheme={colorTheme}>michalboruch</StyledParagraph>
     </StyledHeader>
   );
 };

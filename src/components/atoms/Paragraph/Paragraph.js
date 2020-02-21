@@ -5,7 +5,7 @@ const Paragraph = styled(animated.p)`
   margin: 0;
   left: 0;
   letter-spacing: 2px;
-  color: #fff;
+  color: #000;
 
   ${({ alpha }) =>
     alpha &&

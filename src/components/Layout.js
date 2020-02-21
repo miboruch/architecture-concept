@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
+import Header from './molecules/Header/Header';
+import Footer from './molecules/Footer/Footer';
 import GlobalStyle from '../styles/GlobalStyle';
 import './layout.css';
 

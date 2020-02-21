@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import Paragraph from '../components/Paragraph/Paragraph';
+import Paragraph from '../components/atoms/Paragraph/Paragraph';
 import Layout from '../components/Layout';
 import { useSpring, animated } from 'react-spring';
 import { easeExpOut } from 'd3-ease';

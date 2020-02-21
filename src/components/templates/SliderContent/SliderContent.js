@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
 import { animated, useSpring } from 'react-spring';
-import { CurrentSlideContext } from '../../providers/CurrentSlideContext';
+import { CurrentSlideContext } from '../../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
-import Paragraph from '../Paragraph/Paragraph';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const StyledBackground = styled(BackgroundImage)`

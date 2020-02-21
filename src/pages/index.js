@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { graphql, Link } from 'gatsby';
-import MainSlider from '../components/MainSlider/MainSlider';
+import MainSlider from '../components/templates/MainSlider/MainSlider';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import CurrentSlideContextProvider from '../providers/CurrentSlideContext';
-import Loader from '../components/Loader/Loader';
+import Loader from '../components/molecules/Loader/Loader';
 import { useLoadingEffect } from '../utils/customHooks';
+import MainPageContent from '../components/molecules/MainPageContent/MainPageContent';
 
 const StyledBox = styled.div`
   width: 100%;
@@ -31,7 +32,7 @@ const IndexPage = ({ data }) => {
           images={[image1, image2, image3, image4]}
           content={contents}
         />
-        <StyledBox />
+        <MainPageContent />
       </CurrentSlideContextProvider>
     </Layout>
   );

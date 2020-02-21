@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import { animated } from 'react-spring';
 import SEO from '../components/SEO';
 import TransitionProvider from '../providers/TransitionProvider';
-import Paragraph from '../components/Paragraph/Paragraph';
+import Paragraph from '../components/atoms/Paragraph/Paragraph';
 import { useSpring } from 'react-spring';
 import { easeExpOut } from 'd3-ease';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {animated} from 'react-spring';
-import Paragraph from '../Paragraph/Paragraph';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { useSpring } from 'react-spring';
 import { easeExpOut } from 'd3-ease';
 
