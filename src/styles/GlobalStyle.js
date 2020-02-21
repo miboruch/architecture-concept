@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Futura';
     font-size: 1.6rem;
   }
   

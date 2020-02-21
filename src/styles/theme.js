@@ -7,18 +7,21 @@ export const theme = {
       xl: '2.4rem'
     },
     family: {
-      montserrat: 'Montserrat'
+      futura: 'Futura',
+      avanti: 'Avanti'
     }
   },
   color: {
     background: '#1c1c1c',
     secondBackground: '#f5f5f3',
-    secondFont: '#7b7b7b'
+    secondFont: '#7b7b7b',
+    backgroundDark: '#2d2d2d',
+    backgroundLight: '#e2e2e2'
   },
   mq: {
     mobileL: '@media all and (min-width: 370px)',
     tablet: '@media all and (min-width: 710px)',
     standard: '@media all and (min-width: 1024px)',
-    desktop: '@media all and (min-width: 1440px)',
+    desktop: '@media all and (min-width: 1440px)'
   }
 };
