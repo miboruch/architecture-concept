@@ -14,7 +14,7 @@ const Layout = ({ children, colorTheme }) => {
       <ThemeProvider theme={theme}>
         <Header colorTheme={colorTheme} />
         {children}
-        {/*<Footer colorTheme={colorTheme} />*/}
+        <Footer />
       </ThemeProvider>
     </>
   );

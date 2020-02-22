@@ -18,6 +18,7 @@ const StyledWrapper = styled.div`
 
 const BoxesWrapper = styled.section`
   padding: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const IndexPage = ({ data }) => {
