@@ -27,6 +27,7 @@ const StyledContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 2rem 0;
 `;
 
 const ArrowWrapper = styled.section`

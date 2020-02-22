@@ -9,10 +9,15 @@ import Loader from '../components/molecules/Loader/Loader';
 import { useLoadingEffect } from '../utils/customHooks';
 import MainPageContent from '../components/molecules/MainPageContent/MainPageContent';
 import PhotoSlider from '../components/molecules/PhotoSlider/PhotoSlider';
+import ContentInfoBox from '../components/molecules/ContentInfoBox/ContentInfoBox';
 
 const StyledWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
+`;
+
+const BoxesWrapper = styled.section`
+  padding: 1rem;
 `;
 
 const IndexPage = ({ data }) => {
@@ -39,6 +44,10 @@ const IndexPage = ({ data }) => {
             content={contents}
           />
         </StyledWrapper>
+        <BoxesWrapper>
+          <ContentInfoBox colorTheme='dark' content={contents[0]} />
+          <ContentInfoBox colorTheme='light' content={contents[1]} />
+        </BoxesWrapper>
       </CurrentSlideContextProvider>
     </Layout>
   );
@@ -73,6 +82,8 @@ export const query = graphql`
         heading
         subheading
         url
+        location
+        size
       }
     }
   }
