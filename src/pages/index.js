@@ -17,8 +17,24 @@ const StyledWrapper = styled.div`
 `;
 
 const BoxesWrapper = styled.section`
-  padding: 1rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  ${({ theme }) => theme.mq.standard} {
+    width: 50%;
+    padding-left: 1rem;
+  }
+`;
+
+const FlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  ${({ theme }) => theme.mq.standard} {
+    justify-content: center;
+    flex-direction: row;
+    padding: 1rem;
+  }
 `;
 
 const IndexPage = ({ data }) => {
@@ -40,15 +56,17 @@ const IndexPage = ({ data }) => {
             content={contents}
           />
           <MainPageContent />
-          <PhotoSlider
-            images={[image1, image2, image3, image4]}
-            content={contents}
-          />
+          <FlexWrapper>
+            <PhotoSlider
+              images={[image1, image2, image3, image4]}
+              content={contents}
+            />
+            <BoxesWrapper>
+              <ContentInfoBox colorTheme='light' content={contents[0]} />
+              <ContentInfoBox colorTheme='dark' content={contents[1]} />
+            </BoxesWrapper>
+          </FlexWrapper>
         </StyledWrapper>
-        <BoxesWrapper>
-          <ContentInfoBox colorTheme='dark' content={contents[0]} />
-          <ContentInfoBox colorTheme='light' content={contents[1]} />
-        </BoxesWrapper>
       </CurrentSlideContextProvider>
     </Layout>
   );

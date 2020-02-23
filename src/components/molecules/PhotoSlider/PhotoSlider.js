@@ -8,17 +8,29 @@ import Paragraph from '../../atoms/Paragraph/Paragraph';
 
 const StyledWrapper = styled.div`
   width: 100%;
+
+  ${({ theme }) => theme.mq.standard} {
+    width: 50%;
+  }
 `;
 
 const StyledSlider = styled(Slider)`
   z-index: 0;
   width: 100%;
   height: 300px;
+
+  ${({ theme }) => theme.mq.standard} {
+    height: 360px;
+  }
 `;
 
 const StyledImage = styled(GatsbyImage)`
   height: 300px;
   object-fit: cover;
+
+  ${({ theme }) => theme.mq.standard} {
+    height: 360px;
+  }
 `;
 
 const StyledContentWrapper = styled.div`

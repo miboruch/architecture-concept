@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 import Hamburger from '../../atoms/Hamburger/Hamburger';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { useScrollPosition } from '../../../utils/customHooks';
@@ -37,7 +38,9 @@ const Header = ({ colorTheme }) => {
   return (
     <StyledHeader colorTheme={colorTheme} isOnTop={isOnTop}>
       <Hamburger isOpen={false} colorTheme={colorTheme} />
-      <StyledParagraph colorTheme={colorTheme}>michalboruch</StyledParagraph>
+      <Link to={'/'}>
+        <StyledParagraph colorTheme={colorTheme}>michalboruch</StyledParagraph>
+      </Link>
     </StyledHeader>
   );
 };

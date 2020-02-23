@@ -27,6 +27,8 @@ const StyledImage = styled(animated(Img))`
 const StyledHeading = styled(animated.h1)`
   letter-spacing: 3px;
   padding: 2rem 0;
+  font-family: ${({ theme }) => theme.font.family.avanti};
+  transition: all 0.3s ease;
 `;
 
 const StrokedParagraph = styled(animated.p)`
@@ -45,6 +47,8 @@ const StrokedParagraph = styled(animated.p)`
   ::after {
     position: absolute;
     content: 'project id';
+    font-family: ${({ theme }) => theme.font.family.futura};
+    font-weight: lighter;
     font-size: 12px;
     bottom: 0.2rem;
     padding-left: 1rem;
@@ -57,8 +61,9 @@ const StrokedParagraph = styled(animated.p)`
 const StyledParagraph = styled(animated(Paragraph))`
   color: ${({ theme }) => theme.color.secondFont};
   padding: 2rem 0;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   text-decoration: none;
+  font-size: 14px;
 `;
 
 const StyledParagraphNoPadding = styled(StyledParagraph)`
@@ -124,7 +129,7 @@ const ApartmentTemplate = ({ image, content }) => {
   const boxSlider = boxSlide(1500, 1500);
 
   return (
-    <Layout color='dark'>
+    <Layout colorTheme='light'>
       <StyledWrapper>
         <StyledInnerWrapper>
           <StyledBackBox style={boxSlider}>
@@ -146,7 +151,7 @@ const ApartmentTemplate = ({ image, content }) => {
             location: {content.location}
           </StyledParagraphNoPadding>
           <StyledDescriptionBox>
-            <StyledParagraph small='true' style={fadeIn}>
+            <StyledParagraph style={fadeIn}>
               {content.description}
             </StyledParagraph>
           </StyledDescriptionBox>

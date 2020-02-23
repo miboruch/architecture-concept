@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 
 const StyledWrapper = styled.div`
   width: 100%;
