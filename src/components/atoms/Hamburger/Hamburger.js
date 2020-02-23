@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { MenuContext } from '../../../providers/MenuContext';
 
 const StyledHamburger = styled.button`
   cursor: pointer;
@@ -38,13 +39,13 @@ const InnerHamburger = styled.div`
     transition: all 0.5s ease;
   }
   ::before {
-    top: ${({ isOpen }) => (isOpen ? '0' : '-2px')}; /* -3 */
+    top: ${({ isOpen }) => (isOpen ? '0' : '-2px')};
     width: 32px;
     transform: rotate(${({ isOpen }) => (isOpen ? '40deg' : '0deg')});
   }
   ::after {
-    top: ${({ isOpen }) => (isOpen ? '0' : '2px')}; /* 3 */
-    width: 26px;
+    top: ${({ isOpen }) => (isOpen ? '0' : '2px')};
+    width: ${({ isOpen }) => (isOpen ? '32px' : '26px')};
     transform: rotate(${({ isOpen }) => (isOpen ? '-40deg' : '0deg')});
   }
   ${StyledHamburger}:hover & {
@@ -58,9 +59,10 @@ const InnerHamburger = styled.div`
   }
 `;
 
-const Hamburger = ({ isOpen, colorTheme }) => {
+const Hamburger = ({ colorTheme }) => {
+  const { isOpen, toggleMenu } = useContext(MenuContext);
   return (
-    <StyledHamburger isOpen={isOpen} colorTheme={colorTheme}>
+    <StyledHamburger onClick={toggleMenu}>
       <InnerHamburger isOpen={isOpen} colorTheme={colorTheme} />
     </StyledHamburger>
   );

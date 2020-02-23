@@ -5,16 +5,21 @@ import { theme } from '../styles/theme';
 import Header from './molecules/Header/Header';
 import Footer from './molecules/Footer/Footer';
 import GlobalStyle from '../styles/GlobalStyle';
+import MenuContextProvider from '../providers/MenuContext';
 import './layout.css';
+import Menu from './molecules/Menu/Menu';
 
 const Layout = ({ children, colorTheme }) => {
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Header colorTheme={colorTheme} />
-        {children}
-        <Footer />
+        <MenuContextProvider>
+          <Header colorTheme={colorTheme} />
+          <Menu colorTheme={colorTheme} />
+          {children}
+          <Footer />
+        </MenuContextProvider>
       </ThemeProvider>
     </>
   );

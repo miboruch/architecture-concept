@@ -34,7 +34,7 @@ const StyledTitle = styled(Paragraph)`
     content: '';
     position: absolute;
     top: 50%;
-    right: -2rem;
+    right: -0.5rem;
     width: 25px;
     height: 50px;
     background-color: rgba(255, 255, 255, 0.2);
