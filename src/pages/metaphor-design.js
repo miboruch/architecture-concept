@@ -1,9 +1,9 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import ApartmentTemplate from '../templates/ApartmentTemplate';
 import SEO from '../components/SEO';
-import { graphql } from 'gatsby';
 
-const ModularPage = ({ data }) => {
+const MetaphorPage = ({ data }) => {
   const {
     content: { contents }
   } = data;
@@ -35,4 +35,4 @@ export const query = graphql`
   }
 `;
 
-export default ModularPage;
+export default MetaphorPage;

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
 import { animated, useSpring } from 'react-spring';
-import { CurrentSlideContext } from '../../../providers/CurrentSlideContext';
 import { easeExpOut } from 'd3-ease';
+import { CurrentSlideContext } from '../../../providers/CurrentSlideContext';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 
 const StyledBackground = styled(BackgroundImage)`
@@ -19,13 +19,6 @@ const StyledBackground = styled(BackgroundImage)`
 
 const ContentParagraph = styled(Paragraph)`
   color: #fff;
-`;
-
-const StyledLine = styled(animated.div)`
-  width: 0;
-  height: 1px;
-  background: #fff;
-  transform: translateY(-50%);
 `;
 
 const StrokedParagraph = styled(animated.p)`
@@ -56,15 +49,6 @@ const SliderContent = ({ image, index, content }) => {
     to: {
       opacity: isCurrentSlide ? 1 : 0,
       transform: isCurrentSlide ? `translateX(0)` : `translateX(-50%)`
-    },
-    reverse: !isCurrentSlide,
-    delay: 500
-  });
-
-  const line = useSpring({
-    config: { duration: 2000, easing: easeExpOut },
-    to: {
-      width: isCurrentSlide ? '300px' : '0px'
     },
     reverse: !isCurrentSlide,
     delay: 500

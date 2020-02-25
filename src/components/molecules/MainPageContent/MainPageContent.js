@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { Scene, Controller } from 'react-scrollmagic';
 import { Tween } from 'react-gsap';
 import { easeExpInOut } from 'd3-ease';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
 
 const StyledWrapper = styled.section`
   padding: 80px 2rem 2rem;

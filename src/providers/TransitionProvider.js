@@ -35,7 +35,12 @@ const TransitionProvider = ({ children, to }) => {
     const timeline = new TimelineMax();
 
     timeline
-      .fromTo(element, 0.5, { transform: `translateX(${-vw}px)`, ease: easeExpOut }, { transform: 'translateX(0)' })
+      .fromTo(
+        element,
+        0.5,
+        { transform: `translateX(${-vw}px)`, ease: easeExpOut },
+        { transform: 'translateX(0)' }
+      )
       .to(element, 0.6, {
         transform: `translateX(0)`,
         onComplete: () => {
@@ -67,7 +72,7 @@ const TransitionProvider = ({ children, to }) => {
       }}
       entry={{
         delay: 0.5,
-        trigger: ({ entry, node }) => enterAnimation(entry, node),
+        trigger: ({ entry, node }) => enterAnimation(entry, node)
       }}
     >
       {children}

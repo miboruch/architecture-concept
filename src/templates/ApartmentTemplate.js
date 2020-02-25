@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import Paragraph from '../components/atoms/Paragraph/Paragraph';
-import Layout from '../components/Layout';
 import { useSpring, animated } from 'react-spring';
 import { easeExpOut } from 'd3-ease';
-import AniLink from 'gatsby-plugin-transition-link/AniLink';
+import { Link } from 'gatsby';
+import Paragraph from '../components/atoms/Paragraph/Paragraph';
+import Layout from '../components/Layout';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -29,6 +29,7 @@ const StyledHeading = styled(animated.h1)`
   padding: 2rem 0;
   font-family: ${({ theme }) => theme.font.family.avanti};
   transition: all 0.3s ease;
+  color: #2d2d2d;
 `;
 
 const StrokedParagraph = styled(animated.p)`
@@ -133,9 +134,9 @@ const ApartmentTemplate = ({ image, content }) => {
       <StyledWrapper>
         <StyledInnerWrapper>
           <StyledBackBox style={boxSlider}>
-            <AniLink fade to={'/'} duration={2}>
+            <Link to={'/'}>
               <StyledParagraph small='true'>GO BACK</StyledParagraph>
-            </AniLink>
+            </Link>
           </StyledBackBox>
           <StyledHeading style={fadeIn}>
             Inspiring solutions in each design

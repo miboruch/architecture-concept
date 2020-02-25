@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Paragraph from '../../atoms/Paragraph/Paragraph';
 import { graphql, Link, useStaticQuery } from 'gatsby';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
 
 const StyledFooter = styled.footer`
   width: 100%;

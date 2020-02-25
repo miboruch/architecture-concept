@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledRowBox = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const StyledLink = styled.a`
   color: ${({ colorTheme }) => (colorTheme === 'dark' ? '#fff' : '#000')};
   letter-spacing: 2px;
   margin: 0;
-  padding: 2rem;
+  padding: 0 1rem;
   font-size: ${({ theme }) => theme.font.size.s};
 `;
 
@@ -38,6 +39,10 @@ const SocialMediaLinks = ({ colorTheme }) => {
       </StyledLink>
     </StyledRowBox>
   );
+};
+
+SocialMediaLinks.propTypes = {
+  colorTheme: PropTypes.oneOf(['light', 'dark'])
 };
 
 export default SocialMediaLinks;

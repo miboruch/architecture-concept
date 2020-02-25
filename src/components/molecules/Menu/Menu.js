@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
-import { useTrail, animated } from 'react-spring';
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import { useTrail, animated, useSpring } from 'react-spring';
 import { MenuContext } from '../../../providers/MenuContext';
-import { graphql, useStaticQuery } from 'gatsby';
+import { easeExpOut } from 'd3-ease';
+import SocialMediaLinks from '../../atoms/SocialMediaLinks/SocialMediaLinks';
 
 const StyledWrapper = styled.div`
   width: 100%;
   height: 100vh;
   background: ${({ colorTheme }) =>
-    colorTheme === 'dark' ? '#2d2d2d' : '#e2e2e2'};
+    colorTheme === 'dark' ? '#2d2d2d' : '#fff'};
   color: ${({ colorTheme }) => (colorTheme === 'dark' ? '#fff' : '#2d2d2d')};
   position: fixed;
   top: 0;
@@ -75,6 +76,21 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
+const SocialLinksWrapper = styled(animated.div)`
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  ${({ theme }) => theme.mq.standard} {
+    right: auto;
+    left: 2rem;
+  }
+`;
+
 const Menu = ({ colorTheme }) => {
   const { isOpen, toggleMenu } = useContext(MenuContext);
 
@@ -92,10 +108,20 @@ const Menu = ({ colorTheme }) => {
   `);
 
   const menuTrail = useTrail(contents.length, {
-    opacity: 1,
-    transform: 'matrix(1,0,0,1,0,0)',
+    opacity: isOpen ? 1 : 0,
+    transform: isOpen
+      ? 'matrix(1,0,0,1,0,0)'
+      : 'matrix(0.99, 0.33, 0, 1, 0, 100)',
     from: { opacity: 0, transform: 'matrix(0.99, 0.33, 0, 1, 0, 100)' },
+    reverse: !isOpen,
     delay: 700
+  });
+
+  const socialLinksAnimation = useSpring({
+    config: { duration: 1000, easing: easeExpOut },
+    from: { opacity: 0 },
+    to: { opacity: isOpen ? 1 : 0 },
+    delay: isOpen ? 800 : 0
   });
 
   return (
@@ -113,6 +139,9 @@ const Menu = ({ colorTheme }) => {
         ))}
         <StyledLine colorTheme={colorTheme} />
       </StyledList>
+      <SocialLinksWrapper style={socialLinksAnimation}>
+        <SocialMediaLinks colorTheme='dark' />
+      </SocialLinksWrapper>
     </StyledWrapper>
   );
 };

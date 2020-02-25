@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { animated } from 'react-spring';
-import Paragraph from '../../atoms/Paragraph/Paragraph';
-import { useSpring } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 import { easeExpOut } from 'd3-ease';
+import Paragraph from '../../atoms/Paragraph/Paragraph';
 
 const StyledUpperWrapper = styled.div`
   width: 100%;
@@ -30,28 +29,32 @@ const StyledParagraph = styled(animated(Paragraph))`
   color: #ccc;
 `;
 
+const OverFlowBox = styled.div`
+  overflow: hidden;
+`;
+
 const Loader = ({ isLoading }) => {
   const textEffect = useSpring({
-    config: { duration: 1500, easing: easeExpOut },
+    config: { duration: 1000, easing: easeExpOut },
     from: {
-      transform: 'rotate(10deg)',
-      transformOrigin: 'top left',
+      transform: 'matrix(0.99, 0.89, 0, 1, 0, 100)',
       opacity: 0
     },
     to: {
-      transform: 'rotate(0deg)',
-      transformOrigin: 'center',
-      opacity: 1
+      opacity: 1,
+      transform: 'matrix(1,0,0,1,0,0)'
     },
-    delay: 300
+    delay: 500
   });
 
   return (
     <>
       <StyledUpperWrapper isLoading={isLoading}>
-        <StyledParagraph small='true' style={textEffect}>
-          michalboruch
-        </StyledParagraph>
+        <OverFlowBox>
+          <StyledParagraph medium='true' style={textEffect}>
+            michalboruch
+          </StyledParagraph>
+        </OverFlowBox>
       </StyledUpperWrapper>
       <StyledLowerWrapper isLoading={isLoading}>
         <StyledParagraph small='true'>architecture & design</StyledParagraph>

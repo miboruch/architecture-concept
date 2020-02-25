@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import MainSlider from '../components/templates/MainSlider/MainSlider';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import CurrentSlideContextProvider from '../providers/CurrentSlideContext';
 import Loader from '../components/molecules/Loader/Loader';
-import { useLoadingEffect } from '../utils/customHooks';
 import MainPageContent from '../components/molecules/MainPageContent/MainPageContent';
 import PhotoSlider from '../components/molecules/PhotoSlider/PhotoSlider';
 import ContentInfoBox from '../components/molecules/ContentInfoBox/ContentInfoBox';
+import { useLoadingEffect } from '../utils/customHooks';
 
 const StyledWrapper = styled.div`
   width: 100%;
@@ -75,7 +75,7 @@ const IndexPage = ({ data }) => {
 export const sliderImage = graphql`
   fragment sliderImage on File {
     childImageSharp {
-      fluid(maxWidth: 1700, quality: 100) {
+      fluid(maxWidth: 1500, quality: 100) {
         ...GatsbyImageSharpFluid_noBase64
       }
     }
