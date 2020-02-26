@@ -75,7 +75,7 @@ const IndexPage = ({ data }) => {
 export const sliderImage = graphql`
   fragment sliderImage on File {
     childImageSharp {
-      fluid(maxWidth: 1500, quality: 100) {
+      fluid(maxWidth: 1000, quality: 100) {
         ...GatsbyImageSharpFluid_noBase64
       }
     }

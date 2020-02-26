@@ -9,4 +9,4 @@
 
 `Landing page concept` for architecture design written in React & Gatsby.js
 
-[Live](https://architecture-contept.netlify.com/)
+[Live](https://architecture-concept.netlify.com/)
